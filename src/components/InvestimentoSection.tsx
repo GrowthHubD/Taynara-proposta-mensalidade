@@ -1,80 +1,106 @@
 import { X, Check } from "lucide-react";
+import { motion } from "framer-motion";
 
 const currentCosts = [
-  "Disparo manual consome horas da equipe.",
-  "Chips banidos por falta de aquecimento.",
-  "Leads sem pré-atendimento esfriam rápido.",
-  "Resultados inconsistentes e difíceis de escalar.",
+  "Recepcionistas sobrecarregadas com tarefas repetitivas.",
+  "Pacientes esfriam por demora no tempo de resposta.",
+  "Alto índice de faltas (no-shows) por falta de lembretes.",
+  "Difícil saber a origem exata de cada fechamento (Google vs Insta).",
 ];
 
 const savingsBenefits = [
-  "Disparo automatizado para até 250 leads/dia.",
-  "Chips sempre saudáveis e protegidos.",
-  "Pré-atendimento 24/7 sem custo extra.",
-  "Escalável e consistente.",
-  "Resultados mensuráveis em tempo real.",
+  "Agendamento automatizado, reduzindo o tempo de telefone.",
+  "Fila de espera digital gerida por IA empática.",
+  "Atendimento 24/7 (até de madrugada ou fins de semana).",
+  "Lembretes ativos reduzindo no-shows drasticamente.",
+  "Dashboards exatos com o ROI de cada campanha.",
 ];
 
 export const InvestimentoSection = () => {
   return (
-    <section className="py-16 sm:py-24 px-4 sm:px-6 max-w-6xl mx-auto">
-      <div className="text-center mb-12 sm:mb-16">
-        <p className="text-xs font-bold tracking-[0.3em] uppercase text-primary mb-4">
-          ROI
+    <section className="py-24 sm:py-32 px-4 sm:px-6 max-w-6xl mx-auto overflow-hidden">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="text-center mb-16 sm:mb-24"
+      >
+        <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-primary mb-4 opacity-70">
+          ANÁLISE DE IMPACTO
         </p>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
-          Não é Custo, é <span className="text-primary">Investimento</span>
+        <h2 className="text-4xl sm:text-5xl md:text-6xl font-heading font-bold text-foreground mb-6 tracking-tight flex items-center justify-center gap-3">
+          Custo <span className="text-primary font-sans font-medium text-5xl md:text-7xl">&</span> Retorno
         </h2>
-        <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-xl mx-auto">
-          Substitua processos manuais e ineficientes por automação inteligente com retorno imediato.
+        <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto font-light leading-relaxed">
+          Substitua processos manuais lentos por um sistema contínuo que nunca dorme e não erra agendamentos.
         </p>
-      </div>
+      </motion.div>
 
-      <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-stretch">
+      <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-stretch">
         {/* Custo atual */}
-        <div className="rounded-2xl border border-destructive/20 bg-gradient-card p-6 sm:p-8 flex flex-col">
-          <div className="flex items-center justify-between mb-2">
-            <h3 className="text-base sm:text-lg font-heading font-semibold text-foreground">Processo Manual</h3>
-            <span className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded">Atual</span>
+        <motion.div 
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="glass-dark p-10 rounded-[2.5rem] border border-white/5 flex flex-col group"
+        >
+          <div className="flex items-center justify-between mb-8">
+            <h3 className="text-xl font-heading font-bold text-foreground/60 tracking-tight">Clínica Tradicional</h3>
+            <span className="text-[9px] font-bold tracking-widest text-muted-foreground border border-white/10 px-3 py-1 rounded-full uppercase">Estagnada</span>
           </div>
-          <div className="text-3xl sm:text-4xl font-heading font-bold text-foreground mb-1">
-            Tempo + Risco
+          
+          <div className="text-4xl font-heading font-bold text-foreground/40 mb-2 tracking-tighter">
+            Trabalho Braçal
           </div>
-          <div className="text-xs text-muted-foreground mb-6">Disparo manual, chips sem proteção</div>
-          <ul className="space-y-2 mb-8 flex-grow">
+          <div className="text-xs text-muted-foreground/50 mb-10 uppercase tracking-widest font-bold">Custos Ocultos + Faltas</div>
+          
+          <ul className="space-y-4 flex-grow">
             {currentCosts.map((item, i) => (
-              <li key={i} className="flex items-center gap-3 text-sm text-muted-foreground">
-                <X className="w-4 h-4 text-destructive flex-shrink-0" />
+              <li key={i} className="flex items-center gap-4 text-sm text-muted-foreground/60 font-light">
+                <X className="w-4 h-4 text-destructive/40 flex-shrink-0" />
                 {item}
               </li>
             ))}
           </ul>
-        </div>
+        </motion.div>
 
         {/* Com automação */}
-        <div className="rounded-2xl border border-primary/30 bg-gradient-card p-6 sm:p-8 relative overflow-hidden flex flex-col">
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
+        <motion.div 
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="glass p-10 rounded-[2.5rem] border border-primary/20 relative overflow-hidden flex flex-col group shadow-premium"
+        >
+          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 blur-[100px] rounded-full -mr-32 -mt-32" />
+          
           <div className="relative flex flex-col flex-grow">
-            <h3 className="text-base sm:text-lg font-heading font-semibold text-foreground mb-2">Com Automação IA</h3>
-            <div className="text-4xl sm:text-5xl font-heading font-bold text-gradient-green mb-1">
-              R$ 2.000/mês
+            <div className="flex items-center justify-between mb-8">
+              <h3 className="text-xl font-heading font-bold text-foreground tracking-tight">Clínica Automatizada</h3>
+              <span className="text-[9px] font-bold tracking-widest text-primary border border-primary/20 px-3 py-1 rounded-full uppercase">Escalável</span>
             </div>
-            <p className="text-xs sm:text-sm text-muted-foreground mb-6">
-              Três agentes trabalhando por você,{" "}
-              <span className="text-primary font-semibold">24 horas por dia</span>.
+
+            <div className="text-4xl sm:text-5xl font-heading font-bold text-gradient-primary mb-2 tracking-tighter">
+              Agenda Cheia
+            </div>
+            <p className="text-xs font-bold tracking-widest text-primary uppercase mb-10">
+              Operação <span className="text-foreground">24/7/365</span> automatizada
             </p>
-            <ul className="space-y-2 flex-grow">
+
+            <ul className="space-y-4 flex-grow">
               {savingsBenefits.map((item, i) => (
-                <li key={i} className="flex items-center gap-3 text-sm text-muted-foreground">
-                  <div className="w-4 h-4 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                    <Check className="w-2.5 h-2.5 text-primary" />
+                <li key={i} className="flex items-center gap-4 text-sm text-foreground/80 font-light group-hover:text-foreground transition-colors duration-300">
+                  <div className="w-5 h-5 rounded-full border border-primary/20 flex items-center justify-center flex-shrink-0 bg-primary/10">
+                    <Check className="w-3 h-3 text-primary" />
                   </div>
                   {item}
                 </li>
               ))}
             </ul>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

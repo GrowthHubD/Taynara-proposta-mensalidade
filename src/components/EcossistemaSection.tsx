@@ -1,97 +1,116 @@
 import {
-  Bot,
-  Send,
-  MessageSquare,
-  Target,
-  Flame,
-  Zap,
-  BarChart3,
-  Shield,
   Clock,
+  CalendarCheck,
+  RotateCcw,
+  BellRing,
+  PieChart,
+  Activity,
 } from "lucide-react";
+import { motion } from "framer-motion";
 
 const services = [
   {
-    icon: Send,
-    title: "Agente de Disparo",
-    desc: "Disparo automatizado de mensagens para listas de leads via WhatsApp. Opera com API oficial ou não oficial, conforme estratégia ideal para seu cenário.",
-  },
-  {
-    icon: Flame,
-    title: "Aquecedor de Chip",
-    desc: "Mantém seus números saudáveis e ativos. Simula interações naturais para evitar banimentos e garantir alta entregabilidade das mensagens.",
-  },
-  {
-    icon: MessageSquare,
-    title: "Agente de Pré-Atendimento",
-    desc: "IA que responde automaticamente aos leads que interagem com os disparos. Qualifica, tira dúvidas e encaminha para o time comercial no momento certo.",
-  },
-  {
-    icon: Target,
-    title: "Até 250 Leads/Dia",
-    desc: "Capacidade de disparo de até 250 leads por dia por número, garantindo volume consistente sem comprometer a saúde do chip.",
-  },
-  {
     icon: Clock,
-    title: "Operação 24/7",
-    desc: "Seus agentes trabalham sem parar. Dispare, aqueça e pré-atenda leads a qualquer hora, inclusive fora do horário comercial.",
+    title: "Atendimento 24/7",
+    desc: "A clínica nunca fecha digitalmente. Respostas instantâneas, empáticas e humanizadas a qualquer hora do dia ou da noite.",
   },
   {
-    icon: BarChart3,
-    title: "Métricas em Tempo Real",
-    desc: "Acompanhe disparos realizados, taxas de resposta, leads qualificados e performance de cada agente em dashboards claros pelo Chatwoot.",
+    icon: CalendarCheck,
+    title: "Agendamento Automático",
+    desc: "A IA qualifica o paciente e realiza o agendamento diretamente na agenda da doutora, sem intervenção manual.",
   },
   {
-    icon: Zap,
-    title: "API Oficial ou Não Oficial",
-    desc: "Flexibilidade para operar com a API oficial do WhatsApp Business ou via conexão não oficial, de acordo com sua necessidade e estratégia.",
+    icon: RotateCcw,
+    title: "Follow-up Ativo",
+    desc: "Reengaja automaticamente leads que pararam de responder, recuperando pacientes que seriam perdidos.",
   },
   {
-    icon: Shield,
-    title: "Segurança & LGPD",
-    desc: "Dados protegidos com criptografia. Conformidade com LGPD e boas práticas de privacidade em todas as interações.",
+    icon: BellRing,
+    title: "Lembretes Inteligentes",
+    desc: "Reduza o no-show enviando lembretes automáticos e confirmando a presença dos pacientes via WhatsApp.",
   },
   {
-    icon: Bot,
-    title: "Aprendizado Contínuo",
-    desc: "Os agentes evoluem com cada interação, refinando abordagens e melhorando taxas de resposta e qualificação ao longo do tempo.",
+    icon: PieChart,
+    title: "Dashboard do Marketing",
+    desc: "Acompanhamento em tempo real do volume de leads gerados, taxas de resposta e ROI detalhado nas conversões.",
+  },
+  {
+    icon: Activity,
+    title: "Dashboard da Clínica",
+    desc: "Uma visão panorâmica para a doutora: gestão de pacientes, status operacional e previsibilidade de agenda.",
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+    },
+  },
+};
+
 export const EcossistemaSection = () => {
   return (
-    <section className="py-16 sm:py-24 px-4 sm:px-6 max-w-6xl mx-auto">
-      <div className="text-center mb-12 sm:mb-16">
-        <p className="text-xs font-bold tracking-[0.3em] uppercase text-primary mb-4">
-          Soluções
+    <section className="py-24 sm:py-32 px-4 sm:px-6 max-w-6xl mx-auto overflow-hidden">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="text-center mb-16 sm:mb-24"
+      >
+        <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-primary mb-4 opacity-70">
+          INFRAESTRUTURA COMPLETA
         </p>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
-          Três Agentes, Resultado Completo
+        <h2 className="text-4xl sm:text-5xl md:text-6xl font-heading font-bold text-foreground mb-6 tracking-tight">
+          Ecossistema de Alta Fidelização
         </h2>
-        <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-xl mx-auto">
-          Disparo em escala, chip sempre saudável e pré-atendimento inteligente. Tudo automatizado para maximizar seus resultados.
+        <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto font-light leading-relaxed">
+          Nossa tecnologia gerencia todo o fluxo do paciente — da primeira mensagem à porta do consultório.
         </p>
-      </div>
+      </motion.div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+      >
         {services.map((service, i) => (
-          <div
+          <motion.div
             key={i}
-            className="group relative rounded-2xl border border-border bg-gradient-card p-6 hover:border-primary/30 transition-all duration-300 hover:-translate-y-1"
+            variants={itemVariants}
+            className="group relative rounded-[1.5rem] glass p-8 hover:bg-white/[0.08] transition-all duration-500 hover:shadow-premium"
           >
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-              <service.icon className="w-5 h-5 text-primary" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            
+            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 border border-primary/20">
+              <service.icon className="w-6 h-6 text-primary" />
             </div>
-            <h3 className="font-heading font-semibold text-foreground mb-2">
+            
+            <h3 className="text-xl font-heading font-bold text-foreground mb-3 tracking-tight">
               {service.title}
             </h3>
-            <p className="text-muted-foreground text-sm leading-relaxed">
+            <p className="text-muted-foreground text-sm leading-relaxed font-light group-hover:text-foreground/80 transition-colors">
               {service.desc}
             </p>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };

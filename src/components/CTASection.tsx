@@ -1,33 +1,63 @@
 import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 export const CTASection = () => {
   return (
-    <section className="py-16 sm:py-24 px-4 sm:px-6 max-w-4xl mx-auto text-center">
-      <div className="relative rounded-2xl sm:rounded-3xl border border-primary/30 bg-gradient-card p-8 sm:p-12 md:p-16 overflow-hidden">
-        {/* Background effects */}
-        <div
-          className="absolute inset-0 pointer-events-none rounded-2xl sm:rounded-3xl"
-          style={{ background: "var(--gradient-glow)" }}
-        />
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent rounded-t-2xl sm:rounded-t-3xl" />
+    <section className="py-24 sm:py-32 px-4 sm:px-6 max-w-5xl mx-auto text-center overflow-hidden">
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+        className="relative rounded-[3rem] glass-dark p-12 sm:p-20 border border-white/5 overflow-hidden group shadow-premium"
+      >
+        {/* Animated Background Gradients */}
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-1000" />
+        <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-primary/20 blur-[100px] rounded-full group-hover:scale-150 transition-transform duration-1000" />
 
-        <div className="relative">
-          <p className="text-xs font-bold tracking-[0.3em] uppercase text-primary mb-4">
-            Próximo Passo
-          </p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
-            Pronto para Escalar?
-          </h2>
-          <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-md mx-auto mb-8 sm:mb-10">
-            Vamos juntos transformar sua operação. O próximo passo é seu.
-          </p>
+        <div className="relative z-10 flex flex-col items-center">
+          <motion.p 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-[10px] font-bold tracking-[0.4em] uppercase text-primary mb-6"
+          >
+            PRÓXIMO PASSO
+          </motion.p>
+          
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="text-4xl sm:text-5xl md:text-6xl font-heading font-bold text-foreground mb-8 tracking-tight"
+          >
+            Pronto para <span className="text-gradient-primary">Escalar?</span>
+          </motion.h2>
+          
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="text-base sm:text-lg text-muted-foreground max-w-lg mx-auto mb-12 font-light leading-relaxed"
+          >
+            A engine do seu crescimento está pronta para ser ativada. Vamos juntos transformar sua operação.
+          </motion.p>
 
-          <button className="group inline-flex items-center gap-2 sm:gap-3 bg-primary hover:bg-primary-glow text-primary-foreground font-semibold text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4 rounded-full transition-all duration-300 glow-green hover:scale-105">
-            Iniciar Projeto
-            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
-          </button>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.8 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <button className="group relative inline-flex items-center gap-4 bg-primary text-slate-900 font-bold text-base px-10 py-5 rounded-full shadow-glow transition-all duration-500 overflow-hidden">
+              <span className="relative z-10">Iniciar Projeto</span>
+              <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
+              <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity" />
+            </button>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

@@ -1,4 +1,5 @@
 import { ChevronDown } from "lucide-react";
+import { motion } from "framer-motion";
 import logo from "@/assets/logo-growthhub.png";
 
 export const HeroSection = () => {
@@ -7,64 +8,102 @@ export const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
-      {/* Background glow */}
-      <div
+    <section className="relative min-h-[95vh] flex flex-col items-center justify-center overflow-hidden pb-16">
+      {/* Background glow - refined */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.4 }}
+        transition={{ duration: 2, ease: "easeInOut" }}
         className="absolute inset-0 pointer-events-none"
         style={{ background: "var(--gradient-hero)" }}
       />
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: "var(--gradient-glow)" }}
+      
+      {/* Dynamic Glow Orbs */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ 
+          scale: [1, 1.2, 1],
+          opacity: [0.05, 0.15, 0.05] 
+        }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/20 blur-[120px] rounded-full pointer-events-none"
       />
 
-      {/* Grid overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-5"
+      {/* Grid overlay - more subtle */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.03 }}
+        transition={{ duration: 2, ease: "easeInOut" }}
+        className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: `linear-gradient(hsl(256 63% 60% / 0.3) 1px, transparent 1px), linear-gradient(90deg, hsl(256 63% 60% / 0.3) 1px, transparent 1px)`,
-          backgroundSize: "60px 60px",
+          backgroundImage: `linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)`,
+          backgroundSize: "80px 80px",
         }}
       />
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center gap-6 md:gap-8 text-center px-4 sm:px-6">
+      <div className="relative z-10 flex flex-col items-center gap-10 text-center px-4 max-w-5xl mt-8">
         {/* Logo */}
-        <div className="flex items-center gap-3 animate-fade-in-up">
+        <motion.div 
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          className="flex items-center gap-3"
+        >
           <img 
             src={logo} 
-            alt="Growth Hub Logo" 
-            className="h-10 sm:h-12 md:h-16 w-auto"
+            alt="Growth Hub" 
+            className="h-12 md:h-16 w-auto"
           />
-        </div>
+        </motion.div>
 
         {/* Badge */}
-        <div
-          className="animate-fade-in-up animate-pulse-glow w-full max-w-md"
-          style={{ animationDelay: "0.3s", opacity: 0, animationFillMode: "forwards" }}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.4, duration: 1, ease: "easeOut" }}
+          className="glass px-6 py-2 rounded-full"
         >
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 border border-primary/40 rounded-full px-4 sm:px-6 py-2.5 sm:py-3 bg-primary/10">
-            <span className="text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase text-primary">
-              PROPOSTA COMERCIAL
-            </span>
-            <span className="hidden sm:block w-px h-4 bg-primary/40" />
-            <span className="text-xs sm:text-sm font-medium text-foreground">
-              Automação Inteligente via WhatsApp
-            </span>
-          </div>
-        </div>
+          <span className="text-[10px] sm:text-xs font-bold tracking-[0.3em] uppercase text-primary/80">
+            PROPOSTA TECNOLÓGICA EXCLUSIVA
+          </span>
+        </motion.div>
+
+        {/* Main Title - Minimalist but Impactful */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 1.2, ease: "easeOut" }}
+          className="space-y-4"
+        >
+          <h1 className="text-4xl md:text-7xl font-bold tracking-tight leading-[1.1]">
+            O Futuro da sua <br />
+            <span className="text-gradient-primary">Clínica Médica</span>
+          </h1>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto font-light leading-relaxed">
+            Automação inteligente 24/7 com atendimento humanizado, agendamentos automáticos e gestão de pacientes em um só lugar.
+          </p>
+        </motion.div>
       </div>
 
       {/* Scroll indicator */}
-      <div
-        className="absolute bottom-10 flex flex-col items-center gap-2 cursor-pointer animate-bounce-down"
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 1.5 }}
+        className="absolute bottom-8 flex flex-col items-center gap-3 cursor-pointer group"
         onClick={scrollToContent}
       >
-        <span className="text-xs tracking-[0.3em] uppercase text-muted-foreground font-medium">
-          Scroll
+        <span className="text-[10px] tracking-[0.4em] uppercase text-muted-foreground font-medium group-hover:text-primary transition-colors">
+          Explore a Jornada
         </span>
-        <ChevronDown className="w-5 h-5 text-primary" />
-      </div>
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <ChevronDown className="w-5 h-5 text-primary/60 group-hover:text-primary transition-colors" />
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

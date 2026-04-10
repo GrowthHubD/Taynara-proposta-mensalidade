@@ -1,249 +1,212 @@
-import { Check, Send, Flame, MessageSquare, Bot, User } from "lucide-react";
+import { Check, CalendarCheck, Clock, MessageSquare, Bot, User } from "lucide-react";
+import { motion } from "framer-motion";
 
 const tabs = [
   {
-    label: "Agente de Disparo",
-    icon: Send,
-    title: "Disparo Inteligente em Escala",
-    desc: "Envio automatizado de mensagens para listas de leads via WhatsApp. Opera com API oficial ou não oficial conforme a melhor estratégia para o seu cenário. Capacidade de até 250 leads/dia por número.",
+    label: "Agendamento IA",
+    icon: CalendarCheck,
+    title: "Pacientes na Agenda sem Esforço",
+    desc: "A inteligência artificial gerencia as marcações, qualifica o interesse e insere a consulta direto na agenda da clínica. Sua recepcionista só acompanha os resultados.",
     items: [
-      "Disparo para listas segmentadas de leads",
-      "API oficial ou não oficial (escolha estratégica)",
-      "Até 250 leads/dia por número",
-      "Personalização de mensagens por segmento",
+      "Integração com Calendário",
+      "Qualificação de Especialidade",
+      "Triagem 24 horas por dia",
+      "Redução de tempo administrativo",
     ],
     mockup: (
-      <div className="bg-gradient-to-br from-[#161616] via-[#1a1a1a] to-[#161616] rounded-2xl border border-primary/30 shadow-2xl overflow-hidden relative">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent pointer-events-none"></div>
-        
-        <div className="flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-3 border-b border-primary/20 bg-[#1f1f1f]/80 backdrop-blur-sm relative z-10">
+      <div className="glass-dark rounded-3xl border border-primary/20 shadow-premium overflow-hidden relative group">
+        <div className="flex items-center gap-3 px-5 py-4 border-b border-white/10 bg-white/5 backdrop-blur-md">
           <div className="flex gap-1.5">
-            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500 shadow-sm"></div>
-            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500 shadow-sm"></div>
-            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500 shadow-sm"></div>
+            <div className="w-2.5 h-2.5 rounded-full bg-red-500/50"></div>
+            <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/50"></div>
+            <div className="w-2.5 h-2.5 rounded-full bg-green-500/50"></div>
           </div>
           <div className="flex-1 text-center">
-            <span className="text-[10px] sm:text-xs text-[#F4F4F4] font-mono font-semibold">agente_disparo</span>
-          </div>
-          <div className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center bg-primary/20 rounded">
-            <Send className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-primary" />
+            <span className="text-[10px] text-muted-foreground font-mono italic">ia.clinica/agendamento</span>
           </div>
         </div>
 
-        <div className="p-3 sm:p-5 space-y-3 sm:space-y-4 bg-gradient-to-b from-[#161616] to-[#141414] relative z-10">
-          <div className="space-y-2">
-            <div className="flex items-start gap-2 animate-message" style={{ animationDelay: '0.5s' }}>
-              <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
-                <Bot className="w-4 h-4 text-primary" />
+        <div className="p-6 space-y-4 bg-black/20">
+          <div className="space-y-4">
+            <motion.div 
+              initial={{ opacity: 0, x: 10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.5 }}
+              className="flex items-start gap-3 justify-end"
+            >
+              <div className="bg-primary/80 px-4 py-2.5 rounded-2xl rounded-tr-none shadow-glow">
+                <p className="text-sm text-white font-medium">Gostaria de marcar uma consulta, vocês têm vaga para amanhã de tarde?</p>
               </div>
-              <div className="max-w-[75%]">
-                <div className="bg-primary/20 rounded-2xl rounded-bl-sm px-4 py-2.5 shadow-md">
-                  <p className="text-sm text-[#F4F4F4] leading-relaxed">Olá! Temos uma condição especial para você este mês. Posso te contar mais?</p>
-                </div>
-                <span className="text-xs text-[#F4F4F4]/40 mt-1 block ml-2">10:15</span>
+              <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 mt-1">
+                <User className="w-4 h-4 text-white/50" />
               </div>
-            </div>
-            
-            <div className="flex items-start gap-2 justify-end animate-message" style={{ animationDelay: '2s' }}>
-              <div className="max-w-[75%]">
-                <div className="bg-[#7758DB] rounded-2xl rounded-br-sm px-4 py-2.5 shadow-md">
-                  <p className="text-sm text-white">Opa, me conta!</p>
-                </div>
-                <span className="text-xs text-[#F4F4F4]/40 mt-1 block text-right mr-2">10:16</span>
-              </div>
-              <div className="w-8 h-8 rounded-full bg-[#7758DB]/30 flex items-center justify-center flex-shrink-0 mt-1">
-                <User className="w-4 h-4 text-[#7758DB]" />
-              </div>
-            </div>
+            </motion.div>
 
-            <div className="flex items-start gap-2 animate-message" style={{ animationDelay: '3.5s' }}>
+            <motion.div 
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1.2 }}
+              className="flex items-start gap-3"
+            >
               <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
                 <Bot className="w-4 h-4 text-primary" />
               </div>
-              <div className="max-w-[75%]">
-                <div className="bg-primary/20 rounded-2xl rounded-bl-sm px-4 py-2.5 shadow-md">
-                  <p className="text-sm text-[#F4F4F4] leading-relaxed">Ótimo! Vou te encaminhar para nosso especialista. Qual melhor horário?</p>
-                </div>
-                <span className="text-xs text-[#F4F4F4]/40 mt-1 block ml-2">10:16</span>
+              <div className="glass px-4 py-2.5 rounded-2xl rounded-tl-none">
+                <p className="text-sm text-foreground/90 leading-relaxed font-light">Olá! Temos um horário amanhã às 15:30. Já deixei pré-reservado, posso confirmar para o senhor?</p>
               </div>
-            </div>
+            </motion.div>
           </div>
 
-          <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-3 sm:pt-4 border-t border-primary/20">
-            <div className="text-center bg-primary/10 rounded-lg p-2 sm:p-3 border border-primary/20">
-              <div className="text-lg sm:text-2xl font-bold text-primary mb-1">250</div>
-              <div className="text-[10px] sm:text-xs text-[#F4F4F4]/70 font-medium">Leads/dia</div>
-            </div>
-            <div className="text-center bg-primary/10 rounded-lg p-2 sm:p-3 border border-primary/20">
-              <div className="text-lg sm:text-2xl font-bold text-primary mb-1">72%</div>
-              <div className="text-[10px] sm:text-xs text-[#F4F4F4]/70 font-medium">Entrega</div>
-            </div>
-            <div className="text-center bg-primary/10 rounded-lg p-2 sm:p-3 border border-primary/20">
-              <div className="text-lg sm:text-2xl font-bold text-primary mb-1">18%</div>
-              <div className="text-[10px] sm:text-xs text-[#F4F4F4]/70 font-medium">Resposta</div>
-            </div>
+          <div className="grid grid-cols-3 gap-3 pt-6 border-t border-white/10">
+            {[
+              { val: "24/7", label: "Disponível" },
+              { val: "< 1m", label: "Resposta" },
+              { val: "100%", label: "Agendado" },
+            ].map((stat, idx) => (
+              <div key={idx} className="text-center p-3 rounded-2xl bg-white/5 border border-white/5 group-hover:bg-primary/10 transition-colors duration-500">
+                <div className="text-xl font-bold text-primary">{stat.val}</div>
+                <div className="text-[9px] text-muted-foreground uppercase tracking-wider">{stat.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
     ),
   },
   {
-    label: "Aquecedor de Chip",
-    icon: Flame,
-    title: "Chip Sempre Saudável",
-    desc: "Sistema inteligente que simula interações naturais no WhatsApp, mantendo seus números ativos e com boa reputação. Evita banimentos e garante alta entregabilidade nos disparos.",
+    label: "Follow-up & Lembretes",
+    icon: Clock,
+    title: "Combate Ativo contra Faltas",
+    desc: "Mais do que só agendar, a IA avisa os pacientes sobre as consultas, pede confirmação e recupera ativamente o contato de pacientes que pararam de responder.",
     items: [
-      "Simulação de conversas naturais",
-      "Manutenção da saúde do número",
-      "Prevenção contra banimentos",
-      "Monitoramento contínuo de status",
+      "Mensagens de confirmação",
+      "Redução drástica de no-shows",
+      "Recuperação de contatos perdidos",
+      "Tom de voz humano e empático",
     ],
     mockup: (
-      <div className="bg-gradient-to-br from-[#161616] via-[#1a1a1a] to-[#161616] rounded-2xl border border-primary/30 shadow-2xl overflow-hidden relative">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent pointer-events-none"></div>
-        
-        <div className="flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-3 border-b border-primary/20 bg-[#1f1f1f]/80 backdrop-blur-sm relative z-10">
-          <div className="flex gap-1.5">
-            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500 shadow-sm"></div>
-            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500 shadow-sm"></div>
-            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500 shadow-sm"></div>
+      <div className="glass-dark rounded-3xl border border-primary/20 shadow-premium overflow-hidden relative group">
+        <div className="flex items-center gap-3 px-5 py-4 border-b border-white/10 bg-white/5">
+           <div className="flex gap-1.5">
+            <div className="w-2.5 h-2.5 rounded-full bg-red-400/30"></div>
+            <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/30"></div>
+            <div className="w-2.5 h-2.5 rounded-full bg-green-400/30"></div>
           </div>
           <div className="flex-1 text-center">
-            <span className="text-[10px] sm:text-xs text-[#F4F4F4] font-mono font-semibold">aquecedor_chip</span>
-          </div>
-          <div className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center bg-primary/20 rounded">
-            <Flame className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-primary" />
+            <span className="text-[10px] text-muted-foreground font-mono italic">ia.clinica/lembretes</span>
           </div>
         </div>
 
-        <div className="p-3 sm:p-5 space-y-3 sm:space-y-4 bg-gradient-to-b from-[#161616] to-[#141414] relative z-10">
-          {/* Chip Status Dashboard */}
-          <div className="space-y-3">
-            <div className="flex items-center justify-between px-1">
-              <span className="text-xs text-[#F4F4F4]/70 font-semibold uppercase tracking-wide">Status dos Chips</span>
-              <div className="flex items-center gap-1.5 bg-green-500/20 px-2.5 py-1 rounded-full border border-green-500/30">
-                <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
-                <span className="text-xs text-green-400 font-bold">Saudável</span>
+        <div className="p-6 space-y-5 bg-black/20">
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase">Automações Ativas</span>
+              <div className="flex items-center gap-2 bg-green-500/10 px-3 py-1 rounded-full border border-green-500/20">
+                <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></div>
+                <span className="text-[10px] text-green-400 font-bold tracking-tight">RODANDO</span>
               </div>
             </div>
 
             {[
-              { num: "+55 11 9****-1234", status: "Ativo", temp: "98%", color: "text-green-400" },
-              { num: "+55 11 9****-5678", status: "Aquecendo", temp: "74%", color: "text-yellow-400" },
-              { num: "+55 21 9****-9012", status: "Ativo", temp: "95%", color: "text-green-400" },
+              { num: "Confirm. Consulta (Hoje)", status: "Excelente", h: "98%", w: "w-[98%]" },
+              { num: "Reengajamento Diário", status: "Aquecendo", h: "45%", w: "w-[45%]" },
             ].map((chip, i) => (
-              <div key={i} className="bg-[#2a2a2a]/60 rounded-xl p-3 border border-primary/10 flex items-center justify-between">
-                <div>
-                  <div className="text-sm text-[#F4F4F4] font-mono">{chip.num}</div>
-                  <div className={`text-xs ${chip.color} font-medium`}>{chip.status}</div>
+              <div key={i} className="glass p-4 rounded-2xl space-y-2">
+                <div className="flex justify-between items-end">
+                  <div className="text-xs font-mono text-foreground/70">{chip.num}</div>
+                  <div className="text-xs font-bold text-primary">{chip.h}</div>
                 </div>
-                <div className="text-right">
-                  <div className="text-lg font-bold text-primary">{chip.temp}</div>
-                  <div className="text-[10px] text-[#F4F4F4]/50">Saúde</div>
+                <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                  <motion.div 
+                    initial={{ width: 0 }}
+                    whileInView={{ width: chip.h }}
+                    transition={{ duration: 1, delay: 0.5 + i*0.2 }}
+                    className="h-full bg-primary"
+                  />
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="grid grid-cols-2 gap-2 sm:gap-3 pt-3 sm:pt-4 border-t border-primary/20">
-            <div className="bg-primary/15 rounded-xl p-3 sm:p-4 border border-primary/30 shadow-lg">
-              <div className="text-lg sm:text-2xl font-bold text-primary mb-1">0</div>
-              <div className="text-[10px] sm:text-xs text-[#F4F4F4]/70 font-medium">Banimentos</div>
-            </div>
-            <div className="bg-primary/15 rounded-xl p-3 sm:p-4 border border-primary/30 shadow-lg">
-              <div className="text-lg sm:text-2xl font-bold text-primary mb-1">99%</div>
-              <div className="text-[10px] sm:text-xs text-[#F4F4F4]/70 font-medium">Uptime</div>
-            </div>
+          <div className="grid grid-cols-2 gap-3 pt-4 border-t border-white/10">
+             <div className="glass p-4 rounded-2xl text-center">
+               <div className="text-2xl font-bold text-primary tracking-tight">-75%</div>
+               <div className="text-[9px] text-muted-foreground uppercase font-bold tracking-widest">Faltas (No-Show)</div>
+             </div>
+             <div className="glass p-4 rounded-2xl text-center">
+               <div className="text-2xl font-bold text-primary tracking-tight">+30%</div>
+               <div className="text-[9px] text-muted-foreground uppercase font-bold tracking-widest">Retenção</div>
+             </div>
           </div>
         </div>
       </div>
     ),
   },
   {
-    label: "Agente de Pré-Atendimento",
+    label: "Visibilidade Integrada",
     icon: MessageSquare,
-    title: "Pré-Atendimento Automatizado",
-    desc: "IA que responde automaticamente aos leads que interagem com os disparos. Qualifica, tira dúvidas iniciais e encaminha os leads prontos para o time comercial no momento ideal.",
+    title: "Métricas na Palma da Mão",
+    desc: "Acesse dashboards dedicados tanto para o time de marketing (controle de leads gerados) quanto para a doutora/clínica (fluxo de pacientes).",
     items: [
-      "Resposta automática aos leads que interagem",
-      "Qualificação inteligente antes do contato humano",
-      "Encaminhamento para o time comercial",
-      "Disponibilidade 24/7 sem custo de equipe",
+      "Painel de performance do MKT",
+      "Visão de agendamentos da Doutora",
+      "Geração de relatórios diários",
+      "Insights para aumento de taxa de conversão",
     ],
     mockup: (
-      <div className="bg-gradient-to-br from-[#161616] via-[#1a1a1a] to-[#161616] rounded-2xl border border-primary/30 shadow-2xl overflow-hidden relative">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent pointer-events-none"></div>
-        
-        <div className="flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-3 border-b border-primary/20 bg-[#1f1f1f]/80 backdrop-blur-sm relative z-10">
+      <div className="glass-dark rounded-3xl border border-primary/20 shadow-premium overflow-hidden relative group">
+        <div className="flex items-center gap-3 px-5 py-4 border-b border-white/10 bg-white/5">
           <div className="flex gap-1.5">
-            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500 shadow-sm"></div>
-            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500 shadow-sm"></div>
-            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500 shadow-sm"></div>
+            <div className="w-2.5 h-2.5 rounded-full bg-red-400/30"></div>
+            <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/30"></div>
+            <div className="w-2.5 h-2.5 rounded-full bg-green-400/30"></div>
           </div>
-          <div className="flex-1 text-center">
-            <span className="text-[10px] sm:text-xs text-[#F4F4F4] font-mono font-semibold">pre_atendimento</span>
-          </div>
-          <div className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center bg-primary/20 rounded">
-            <MessageSquare className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-primary" />
-          </div>
+          <div className="flex-1 text-center font-mono text-[10px] text-muted-foreground italic">ia.clinica/dashboard</div>
         </div>
 
-        <div className="p-3 sm:p-5 space-y-3 sm:space-y-4 bg-gradient-to-b from-[#161616] to-[#141414] relative z-10">
-          <div className="space-y-2">
-            <div className="flex items-center justify-between mb-3 px-1">
-              <span className="text-xs text-[#F4F4F4]/70 font-semibold uppercase tracking-wide">Pré-atendimento ativo</span>
-              <div className="flex items-center gap-1.5 bg-primary/20 px-2.5 py-1 rounded-full border border-primary/30">
-                <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></div>
-                <span className="text-xs text-primary font-bold">8</span>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-2 justify-end">
-              <div className="max-w-[75%]">
-                <div className="bg-[#7758DB] rounded-2xl rounded-br-sm px-4 py-2.5 shadow-md">
-                  <p className="text-sm text-white">Quero saber mais sobre o serviço</p>
-                </div>
-                <span className="text-xs text-[#F4F4F4]/40 mt-1 block text-right mr-2">14:32</span>
-              </div>
-              <div className="w-8 h-8 rounded-full bg-[#7758DB]/30 flex items-center justify-center flex-shrink-0 mt-1">
-                <User className="w-4 h-4 text-[#7758DB]" />
-              </div>
-            </div>
-
-            <div className="flex items-start gap-2">
-              <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
-                <Bot className="w-4 h-4 text-primary" />
-              </div>
-              <div className="max-w-[75%]">
-                <div className="bg-primary/20 rounded-2xl rounded-bl-sm px-4 py-2.5 shadow-md">
-                  <p className="text-sm text-[#F4F4F4]">Claro! Antes de te conectar com nosso especialista, posso te fazer algumas perguntas rápidas?</p>
-                </div>
-                <span className="text-xs text-[#F4F4F4]/40 mt-1 block ml-2">14:32</span>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-2 justify-end">
-              <div className="max-w-[75%]">
-                <div className="bg-[#7758DB] rounded-2xl rounded-br-sm px-4 py-2.5 shadow-md">
-                  <p className="text-sm text-white">Pode sim!</p>
-                </div>
-                <span className="text-xs text-[#F4F4F4]/40 mt-1 block text-right mr-2">14:33</span>
-              </div>
-              <div className="w-8 h-8 rounded-full bg-[#7758DB]/30 flex items-center justify-center flex-shrink-0 mt-1">
-                <User className="w-4 h-4 text-[#7758DB]" />
-              </div>
-            </div>
+        <div className="p-6 space-y-4 bg-black/20">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-[10px] font-bold text-muted-foreground tracking-widest uppercase">Visão Médica Diária</span>
+            <div className="px-3 py-1 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs font-bold border border-primary/30">HOJE</div>
           </div>
 
-          <div className="grid grid-cols-2 gap-2 sm:gap-3 pt-3 sm:pt-4 border-t border-primary/20">
-            <div className="bg-primary/15 rounded-xl p-3 sm:p-4 border border-primary/30 shadow-lg">
-              <div className="text-lg sm:text-2xl font-bold text-primary mb-1">94%</div>
-              <div className="text-[10px] sm:text-xs text-[#F4F4F4]/70 font-medium">Qualificados</div>
-            </div>
-            <div className="bg-primary/15 rounded-xl p-3 sm:p-4 border border-primary/30 shadow-lg">
-              <div className="text-lg sm:text-2xl font-bold text-primary mb-1">&lt;30s</div>
-              <div className="text-[10px] sm:text-xs text-[#F4F4F4]/70 font-medium">Tempo resposta</div>
-            </div>
+          <div className="space-y-4">
+             <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5 }}
+              className="glass p-4 rounded-2xl border-l-2 border-l-primary"
+            >
+              <div className="flex justify-between items-center mb-1">
+                <span className="text-[10px] font-bold text-primary uppercase">Consultas Agendadas pela IA</span>
+                <span className="text-[9px] text-muted-foreground font-mono">Total</span>
+              </div>
+              <p className="text-3xl text-foreground font-bold tracking-tight">8</p>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 1 }}
+              className="glass p-4 rounded-2xl opacity-80"
+            >
+              <div className="flex justify-between items-center mb-1">
+                <span className="text-[10px] font-bold text-muted-foreground uppercase">Confirmações</span>
+                <span className="text-[9px] text-muted-foreground font-mono">Via Chat</span>
+              </div>
+              <p className="text-xl text-foreground/80 font-semibold tracking-tight">6 Confirmados</p>
+            </motion.div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3 pt-6 border-t border-white/10">
+             <div className="glass p-4 rounded-2xl text-center flex flex-col justify-center gap-1">
+               <div className="text-xl font-bold text-primary tracking-tight">45</div>
+               <div className="text-[9px] text-muted-foreground uppercase font-bold tracking-widest">Leads SMS/Ads</div>
+             </div>
+             <div className="glass p-4 rounded-2xl text-center flex flex-col justify-center gap-1">
+               <div className="text-xl font-bold text-primary tracking-tight">&gt;20%</div>
+               <div className="text-[9px] text-muted-foreground uppercase font-bold tracking-widest">Tx Conversão Méd.</div>
+             </div>
           </div>
         </div>
       </div>
@@ -253,49 +216,62 @@ const tabs = [
 
 export const FeatureTabsSection = () => {
   return (
-    <section className="py-16 sm:py-24 px-4 sm:px-6 max-w-6xl mx-auto space-y-12 sm:space-y-16">
+    <section className="py-24 sm:py-32 px-4 sm:px-6 max-w-6xl mx-auto space-y-32 sm:space-y-48">
       {tabs.map((tab, i) => (
         <div
           key={i}
-          className={`grid md:grid-cols-2 gap-8 sm:gap-12 items-center ${i % 2 === 1 ? "md:flex-row-reverse" : ""}`}
+          className={`grid md:grid-cols-2 gap-12 sm:gap-24 items-center ${i % 2 === 1 ? "md:flex-row-reverse" : ""}`}
         >
-          <div className={i % 2 === 1 ? "md:order-2" : ""}>
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-4 h-4 bg-primary rounded flex items-center justify-center">
-                <tab.icon className="w-2.5 h-2.5 text-white" />
+          <motion.div 
+            initial={{ opacity: 0, x: i % 2 === 0 ? -40 : 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className={i % 2 === 1 ? "md:order-2" : ""}
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-6 h-6 bg-primary/20 rounded-md flex items-center justify-center border border-primary/30">
+                <tab.icon className="w-3.5 h-3.5 text-primary" />
               </div>
-              <p className="text-xs font-bold tracking-[0.3em] uppercase text-primary">
+              <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-primary/80">
                 {tab.label}
               </p>
             </div>
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-foreground mb-6 tracking-tight">
               {tab.title}
             </h3>
-            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-6">
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-10 font-light">
               {tab.desc}
             </p>
-            <ul className="space-y-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6">
               {tab.items.map((item, j) => (
-                <li key={j} className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                <div key={j} className="flex items-center gap-3 group">
+                  <div className="w-5 h-5 rounded-full border border-primary/30 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-all duration-300">
                     <Check className="w-3 h-3 text-primary" />
                   </div>
-                  <span className="text-sm text-foreground">{item}</span>
-                </li>
+                  <span className="text-sm text-foreground/80 font-light group-hover:text-foreground transition-colors">{item}</span>
+                </div>
               ))}
-            </ul>
-          </div>
-          <div className={i % 2 === 1 ? "md:order-1" : ""}>
+            </div>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className={i % 2 === 1 ? "md:order-1" : ""}
+          >
             <div className="relative">
               <div
-                className="absolute inset-0 rounded-2xl opacity-60"
-                style={{ background: "var(--gradient-glow)", filter: "blur(50px)" }}
+                className="absolute inset-0 rounded-3xl opacity-30"
+                style={{ background: "var(--gradient-glow)", filter: "blur(60px)" }}
               />
-              <div className="relative rounded-2xl overflow-hidden">
+              <div className="relative">
                 {tab.mockup}
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       ))}
     </section>
