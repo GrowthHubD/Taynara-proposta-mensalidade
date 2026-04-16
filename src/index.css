@@ -25,7 +25,7 @@
     --secondary-foreground: 0 0% 90%;
 
     --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 55%;
+    --muted-foreground: 0 0% 65%;
 
     --accent: 256 63% 60%;
     --accent-foreground: 0 0% 100%;
@@ -68,11 +68,26 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.6;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
@@ -114,7 +129,63 @@
   }
 }
 
-/* Marquee animation */
+/* Animated border beam — appears only on hover, orbits the card */
+@property --beam-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.hover-beam {
+  position: relative;
+  isolation: isolate;
+}
+
+.hover-beam::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--beam-angle),
+    transparent 0deg,
+    hsl(var(--primary) / 0.95) 30deg,
+    hsl(var(--primary-glow) / 0.85) 70deg,
+    transparent 110deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 350ms ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.hover-beam:hover::before,
+.hover-beam:focus-visible::before,
+.hover-beam:focus-within::before {
+  opacity: 1;
+  animation: beam-spin 3.2s linear infinite;
+}
+
+@keyframes beam-spin {
+  to { --beam-angle: 360deg; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hover-beam:hover::before,
+  .hover-beam:focus-visible::before,
+  .hover-beam:focus-within::before {
+    animation: none;
+  }
+}
+
+/* Marquee */
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -125,118 +196,54 @@
   100% { transform: translateX(0); }
 }
 
-.animate-marquee {
-  animation: marquee 30s linear infinite;
-}
+.animate-marquee { animation: marquee 30s linear infinite; }
+.animate-marquee-reverse { animation: marquee-reverse 30s linear infinite; }
+.animate-marquee-fast { animation: marquee 40s linear infinite; }
+.animate-marquee-reverse-fast { animation: marquee-reverse 40s linear infinite; }
 
-.animate-marquee-reverse {
-  animation: marquee-reverse 30s linear infinite;
-}
-
-.animate-marquee-fast {
-  animation: marquee 40s linear infinite;
-}
-
-.animate-marquee-reverse-fast {
-  animation: marquee-reverse 40s linear infinite;
-}
-
-/* Scroll indicator bounce */
+/* Scroll indicator */
 @keyframes bounce-down {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(8px); }
 }
+.animate-bounce-down { animation: bounce-down 1.5s ease-in-out infinite; }
 
-.animate-bounce-down {
-  animation: bounce-down 1.5s ease-in-out infinite;
-}
-
-/* Fade in up animation */
+/* Fade in up */
 @keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-
-.animate-fade-in-up {
-  animation: fade-in-up 0.8s ease-out forwards;
-}
+.animate-fade-in-up { animation: fade-in-up 0.8s ease-out forwards; }
 
 /* Pulse glow */
 @keyframes pulse-glow {
   0%, 100% { box-shadow: 0 0 20px hsl(256 63% 60% / 0.3); }
   50% { box-shadow: 0 0 40px hsl(256 63% 60% / 0.6); }
 }
+.animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
 
-.animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
-}
-
-/* Message bubble animation */
+/* Message bubble */
 @keyframes message-appear {
-  0% {
-    opacity: 0;
-    transform: translateY(20px) scale(0.8);
-    filter: blur(4px);
-  }
-  60% {
-    opacity: 0.8;
-    transform: translateY(-2px) scale(1.02);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
-  }
+  0% { opacity: 0; transform: translateY(20px) scale(0.8); filter: blur(4px); }
+  60% { opacity: 0.8; transform: translateY(-2px) scale(1.02); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 }
-
 .animate-message {
   animation: message-appear 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   opacity: 0;
 }
 
-/* Typing indicator */
+/* Typing */
 @keyframes typing-indicator {
-  0% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  5% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  95% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
+  0% { opacity: 0; transform: scale(0.8); }
+  5% { opacity: 1; transform: scale(1); }
+  95% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.8); }
 }
+.animate-typing-indicator { animation: typing-indicator 1.2s ease-in-out forwards; opacity: 0; }
 
-.animate-typing-indicator {
-  animation: typing-indicator 1.2s ease-in-out forwards;
-  opacity: 0;
-}
-
-/* Typing dots animation */
 @keyframes typing-dot {
-  0%, 60%, 100% {
-    transform: translateY(0);
-    opacity: 0.4;
-  }
-  30% {
-    transform: translateY(-6px);
-    opacity: 1;
-  }
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-6px); opacity: 1; }
 }
-
-.animate-typing-dot {
-  animation: typing-dot 1.2s ease-in-out infinite;
-}
+.animate-typing-dot { animation: typing-dot 1.2s ease-in-out infinite; }

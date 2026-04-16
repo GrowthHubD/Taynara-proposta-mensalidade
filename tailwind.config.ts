@@ -74,6 +74,7 @@ export default {
         'premium-soft': '0 20px 50px rgba(0, 0, 0, 0.4)',
         'premium': '0 25px 60px -15px rgba(0, 0, 0, 0.3)',
         'glow': '0 0 20px hsl(var(--primary) / 0.3)',
+        'glow-lg': '0 0 48px hsl(var(--primary) / 0.45)',
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
